@@ -24,11 +24,15 @@
   height: 100rpx;
   line-height: 50rpx;
 }
-.share-message-wrap .content-wrap .title-content .content {
+.share-message-wrap .content-wrap .title {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.share-message-wrap .content-wrap .content {
   font-size: 24rpx;
   color: #888;
 }
-.share-message-wrap .content-wrap .content-date {
+.share-message-wrap .content-date {
   text-align: right;
   flex: 3;
   line-height: 70px;
@@ -36,16 +40,16 @@
   font-size: 24rpx;
   color: #888;
 }
-.share-message-wrap .share-message-info {
+.share-message-info {
   color: #B9B8B8;
   font-size: 24rpx;
   display: flex;
 }
-.share-message-wrap .share-message-info .share-message-time {
+.share-message-info .share-message-time {
   flex: 5;
   height: 40rpx;
   line-height: 40rpx;
 }
-.share-message-wrap .share-message-info .share-message-add {
+.share-message-info .share-message-add {
   text-align: right;
 }

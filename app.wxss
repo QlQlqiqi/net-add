@@ -1,5 +1,8 @@
 /* icon 样式 */
 @import "/styles/remixicon.wxss";
+/* colorui */
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
 /* 引入we-ui */
 @import "./miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss";
 

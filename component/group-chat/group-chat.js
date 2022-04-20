@@ -21,7 +21,7 @@ Component({
 			if (!data.group.content.length) {
 				return { nickname: "", content: "", date: data.date };
 			}
-			return data.group.content[0];
+			return data.group.content[data.group.content.length - 1];
 		},
 	},
 

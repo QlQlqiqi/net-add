@@ -1,1 +1,3 @@
-/* pages/chat-room/chat-room.wxss */
+page {
+  padding-bottom: 100rpx;
+}

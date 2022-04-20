@@ -43,7 +43,7 @@ Component({
 			const chat = {
 				id: date.getTime(),
 				owner: app.globalData.owner,
-				headIcon: app.globalData.avatorUrl,
+				headIcon: app.globalData.avatarUrl,
 				name: app.globalData.nickname,
 				content: chatContent,
 				likes: [],

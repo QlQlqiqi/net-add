@@ -39,21 +39,21 @@ Component({
 					{
 						id: 1,
 						owner: 1,
-						headIcon: app.globalData.avatorUrl,
+						headIcon: app.globalData.avatarUrl,
 						name: app.globalData.nickname,
 						title: "凤城八路聚集地",
 						content: [
 							{
 								owner: 1,
 								nickname: "QlQl",
-								avatorUrl: app.globalData.avatorUrl,
+								avatarUrl: app.globalData.avatarUrl,
 								content: "好好",
 								date: util.formatDate(util.convertDateToString(new Date())),
 							},
 							{
 								owner: 0,
 								nickname: "QlQl",
-								avatorUrl: app.globalData.avatorUrl,
+								avatarUrl: app.globalData.avatarUrl,
 								content: "好好",
 								date: util.formatDate(util.convertDateToString(new Date())),
 							},
@@ -72,20 +72,50 @@ Component({
 		},
 		// 群聊页面
 		handleNavigateChatRoom(e) {
+			if (!this._checkLogin()) return;
 			const {
 				currentTarget: {
 					dataset: { index },
 				},
 			} = e;
 			wx.navigateTo({
-				url: "/pages/chat-room/chat-room?group=" + JSON.stringify(this.data.groups[index]),
+				url:
+					"/pages/chat-room/chat-room?group=" +
+					JSON.stringify(this.data.groups[index]),
 			});
 		},
 		// 前往增加群聊页面
 		handleAddGroup(e) {
+			if (!this._checkLogin()) return;
 			wx.navigateTo({
 				url: "/pages/add-group/add-group",
 			});
+		},
+		// 监测是否“登录”
+		_checkLogin() {
+			if (!app.globalData.login) {
+				util
+					.getUserProfile("获取头像和昵称用于身份识别")
+					.then(res => {
+						app.globalData.avatarUrl = res.userInfo.avatarUrl;
+						app.globalData.nickname = res.userInfo.nickName;
+						app.globalData.login = true;
+						wx.setStorageSync("login", JSON.stringify(true));
+						wx.setStorageSync(
+							"nickname",
+							JSON.stringify(app.globalData.nickname)
+						);
+						wx.setStorageSync(
+							"avatarUrl",
+							JSON.stringify(app.globalData.avatarUrl)
+						);
+					})
+					.catch(err => {
+						console.log(err);
+					});
+				return false;
+			}
+			return true;
 		},
 		// 返回顶部
 		handleReturnTop(e) {

@@ -49,11 +49,11 @@ Component({
 		// 发送
 		handleSend(e) {
 			const { group, owner, inputContent } = this.data;
-			const { nickname, avatorUrl } = app.globalData;
+			const { nickname, avatarUrl } = app.globalData;
 			const newContent = {
 				owner,
 				nickname,
-				avatorUrl,
+				avatarUrl,
 				content: inputContent,
 				date: util.formatDate(util.convertDateToString(new Date())),
 			}

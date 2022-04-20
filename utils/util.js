@@ -1,8 +1,7 @@
-
 /**
  * 获得凌晨的 date，如: 2021-07-05T00:00:00Z
  * @param {Number} offset 相对于当天凌晨偏移天数，默认 0
- * @returns {String} 
+ * @returns {String}
  */
 const getDawn = function (offset = 0) {
 	let date = new Date();
@@ -63,8 +62,28 @@ const convertDateToString = function (date) {
 	}Z`;
 };
 
+/**
+ * 调用 wx.getUserProfile
+ * @param {String} desc 声明获取用户个人信息后的用途，不超过 30 个字符
+ * @returns {Promise}
+ */
+function getUserProfile(desc) {
+	return new Promise((resolve, reject) => {
+		wx.getUserProfile({
+			desc,
+			success: res => {
+				resolve(res);
+			},
+			fail: err => {
+				reject(err);
+			},
+		});
+	});
+}
+
 module.exports = {
 	getDawn,
 	formatDate,
-	convertDateToString
-}
+	convertDateToString,
+	getUserProfile
+};

@@ -1,5 +1,6 @@
 const app = getApp();
 const computedBehavior = require("miniprogram-computed").behavior;
+const util = require("../../utils/util");
 Component({
 	behaviors: [computedBehavior],
 	properties: {},
@@ -19,7 +20,7 @@ Component({
 				url: "https://mp.weixin.qq.com/s/reKAhE4Fw0x7BhPTYjDHYg",
 			},
 		],
-		currentGallery: 0
+		currentGallery: 0,
 	},
 
 	computed: {
@@ -47,7 +48,7 @@ Component({
 					{
 						id: 1,
 						owner: 1,
-						headIcon: app.globalData.avatorUrl,
+						headIcon: app.globalData.avatarUrl,
 						name: app.globalData.nickname,
 						content:
 							"啊实打实大苏打实打实打算啊实打实大苏打实打实打算啊实打实大苏打实打实打算啊实打实大苏打实打实打算啊实打实大苏打实打实打算",
@@ -81,8 +82,35 @@ Component({
 					JSON.stringify(gallery.title),
 			});
 		},
+		// 监测是否“登录”
+		_checkLogin() {
+			if (!app.globalData.login) {
+				util
+					.getUserProfile("获取头像和昵称用于身份识别")
+					.then(res => {
+						app.globalData.avatarUrl = res.userInfo.avatarUrl;
+						app.globalData.nickname = res.userInfo.nickName;
+						app.globalData.login = true;
+						wx.setStorageSync("login", JSON.stringify(true));
+						wx.setStorageSync(
+							"nickname",
+							JSON.stringify(app.globalData.nickname)
+						);
+						wx.setStorageSync(
+							"avatarUrl",
+							JSON.stringify(app.globalData.avatarUrl)
+						);
+					})
+					.catch(err => {
+						console.log(err);
+					});
+				return false;
+			}
+			return true;
+		},
 		// 举报分享
 		handleReport(e) {
+			if (!this._checkLogin()) return;
 			const {
 				detail: { id },
 			} = e;
@@ -111,6 +139,7 @@ Component({
 		},
 		// 删除分享
 		handleDelete(e) {
+			if (!this._checkLogin()) return;
 			const {
 				detail: { id },
 			} = e;
@@ -156,6 +185,7 @@ Component({
 		},
 		// 点赞
 		handleAddLike(e) {
+			if (!this._checkLogin()) return;
 			const {
 				detail: { id },
 			} = e;
@@ -174,6 +204,7 @@ Component({
 		},
 		// 前往增加分享页面
 		handleAddShare(e) {
+			if (!this._checkLogin()) return;
 			wx.navigateTo({
 				url: "/pages/add-share/add-share",
 			});

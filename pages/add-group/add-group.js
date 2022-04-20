@@ -43,10 +43,11 @@ Component({
 			const group = {
 				id: date.getTime(),
 				owner: app.globalData.owner,
-				headIcon: app.globalData.avatorUrl,
+				headIcon: app.globalData.avatarUrl,
 				name: app.globalData.nickname,
 				title: chatContent,
 				date: util.convertDateToString(date),
+				content: [],
 				address: address,
 			};
 			const groups = JSON.parse(wx.getStorageSync("groups") || "[]");

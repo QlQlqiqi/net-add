@@ -9,13 +9,13 @@
 	<view wx:for="{{ group.content }}" wx:key="index" 
 		class="{{ item.owner == owner? 'cu-item self': 'cu-item' }}"
 	>
-		<view wx:if="{{ item.owner != owner }}" class="cu-avatar radius" style="background-image:url({{item.avatorUrl}});"></view>
+		<view wx:if="{{ item.owner != owner }}" class="cu-avatar radius" style="background-image:url({{item.avatarUrl}});"></view>
 		<view class="main">
 			<view class="content shadow {{ item.owner == owner? 'bg-green': '' }}">
 				<text>{{item.content}}</text>
 			</view>
 		</view>
-		<view wx:if="{{ item.owner == owner }}" class="cu-avatar radius" style="background-image:url({{item.avatorUrl}});"></view>
+		<view wx:if="{{ item.owner == owner }}" class="cu-avatar radius" style="background-image:url({{item.avatarUrl}});"></view>
 		<view class="date">{{item.date}}</view>
 	</view>
 

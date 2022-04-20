@@ -1,0 +1,8 @@
+{
+	"component": true,
+	"usingComponents": {
+		"navbar": "/component/navbar/navbar",
+		"community-message": "/component/community-message/community-message",
+		"mp-dialog": "weui-miniprogram/dialog/dialog"
+	}
+}

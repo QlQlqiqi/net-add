@@ -1,0 +1,44 @@
+<view style="position: relative; height: {{ navHeight }}px;"></view>
+<!-- 导航栏 -->
+<navbar page-name="{{ pageName }}"></navbar>
+
+<!-- 主要内容 -->
+<scroll-view class="community-wrap" refresher-enabled="{{ true }}" refresher-triggered="{{ pullDownRefresh }}" 
+  style="height: {{ (windowHeight - navHeight - 58 - bottomLineHeight) * ratio }}rpx;" scroll-y="{{ true }}" 
+  bindrefresherrefresh="pullDownLoad" scroll-top="{{ scrollTop }}px;"
+	bindscrolltolower="handleLowerRefresh"
+>
+	<!-- 舆情播报 -->
+	<view class="situation-report"></view>
+  <!-- 说说 -->
+  <view class="chats-wrap">
+    <view class="chat-wrap" wx:for="{{ chatsShow }}" wx:key="index">
+      <view class="chat" style="padding-bottom: {{ index + 1 == chatsShow.length? 200: 0 }}rpx;">
+        <community-message chat="{{ item }}" componentWidthMax="{{ 616 / ratio }}" 
+          binddelete="handleDelete" bindreport="handleReport" bindaddLike="handleAddLike"
+        ></community-message>
+      </view>
+      <image src="/public/image/task-circle.png" mode="aspectFit" class="left-circle-icon"></image>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 返回顶部 -->
+<view class="community-return-top-wrap" bindtap="handleReturnTop">
+	<image src="/public/image/return-top.svg" mode="aspectFit" class="image"></image>
+</view>
+
+<!-- 新增分享 -->
+<wxs module="touchmove" src="/wxs/touchmove.wxs"></wxs>
+<image id="some" data-window-width="{{ windowWidth }}" data-window-height="{{ windowHeight }}" 
+  src="/public/image/add-task.png" style="right: 50px; bottom: 170px;" catchtap="handleAddShare" 
+  catch:touchmove="{{ touchmove.handleTouchMove }}" mode="aspectFit" class="community-add-icon" 
+  catch:touchend="{{ touchmove.handleTouchEnd }}" bindtouchstart="{{ touchmove.handleTouchStart }}"
+></image>
+
+<!-- 弹窗 -->
+<mp-dialog show="{{ dialogShow }}" title="提示" mask="{{ true }}" mask-closable="{{ false }}" 
+  buttons="{{ dialogButton }}" bindbuttontap="handleDialogButtons"
+>
+  {{ dialogContent }}
+</mp-dialog>

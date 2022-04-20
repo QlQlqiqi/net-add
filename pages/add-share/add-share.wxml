@@ -1,0 +1,31 @@
+<view style="position: relative; height: {{ navHeight }}px;"></view>
+<!-- 导航栏 -->
+<navbar page-name="{{ pageName }}">
+	<image slot="backIcon" src="/public/image/back.png" mode="aspectFit" 
+		bind:tap="handleBack" style="width: 24px; height: 24px;"
+	></image>
+</navbar>
+
+<view class="add-chat-wrap" style="height: {{ windowHeight - navHeight }}px;">
+	<view class="options-wrap">
+		<button class="cancel" bindtap="handleCancel">取消</button>
+		<button class="ensure" bindtap="handleEnsure">确认</button>
+	</view>
+	<view class="chat-content-wrap">
+		<image src="/public/image/add-chat-edit.svg" class="image" mode="aspectFit"></image>
+		<textarea class="chat-content" value="{{ chatContent }}" bindinput="handleInput" maxlength="{{ maxLength }}"
+			placeholder="把你的想法分享给大家吧~" placeholder-class="textarea" bindkeyboardheightchange="handleShowKeyBoard"
+			show-confirm-bar="{{ false }}" adjust-position="{{false}}" bindblur="handleCloseKeyBoard"
+		></textarea>
+		<!-- 右下角字符计数 -->
+		<view class="char-count">{{ charInputLength }} / {{ maxLength }}</view>
+	</view>
+	<!-- 下面的功能区 -->
+	<view class="bottom-options-wrap">
+		<!-- 地点 -->
+		<view class="option" bindtap="handleGetAdd">
+			<image src="/public/image/add-chat-option-add.svg" mode="aspectFit" class="icon"></image>
+			<text class="content">{{ address? address: '获取当前位置' }}</text>
+		</view>
+	</view>
+</view>

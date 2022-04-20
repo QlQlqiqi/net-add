@@ -1,0 +1,9 @@
+/* icon 样式 */
+@import "/styles/remixicon.wxss";
+/* 引入we-ui */
+@import "./miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss";
+
+page {
+	background-color: rgba(242, 242, 242, 0.81);
+	-webkit-overflow-scrolling: touch
+}

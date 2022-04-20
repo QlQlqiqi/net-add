@@ -1,8 +1,11 @@
 {
 	"pages": [
+		"pages/group-chat/group-chat",
 		"pages/community/community",
 		"pages/add-share/add-share",
-		"pages/groupChat/groupChat"
+		"pages/add-group/add-group",
+		"pages/chat-room/chat-room",
+		"pages/web-view/web-view"
 	],
 	"tabBar": {
 		"custom": true,
@@ -17,7 +20,7 @@
 				"text": "社区"
 			},
 			{
-				"pagePath": "pages/groupChat/groupChat",
+				"pagePath": "pages/group-chat/group-chat",
 				"iconPath": "public/image/tabbar-group-chat-unselected.png",
 				"selectedIconPath": "public/image/tabbar-group-chat.png",
 				"text": "群聊"

@@ -6,9 +6,9 @@ Component({
 	properties: {},
 
 	data: {
-		pageName: "增加分享",
+		pageName: "增加群聊",
 		chatContent: "",
-		maxLength: 800,
+		maxLength: 7,
 		address: "",
 	},
 
@@ -40,19 +40,18 @@ Component({
 				return;
 			}
 			const date = new Date();
-			const chat = {
+			const group = {
 				id: date.getTime(),
 				owner: app.globalData.owner,
 				headIcon: app.globalData.avatorUrl,
 				name: app.globalData.nickname,
-				content: chatContent,
-				likes: [],
+				title: chatContent,
 				date: util.convertDateToString(date),
 				address: address,
 			};
-			const chats = JSON.parse(wx.getStorageSync("chats") || "[]");
-			chats.push(chat);
-			wx.setStorageSync("chats", JSON.stringify(chats));
+			const groups = JSON.parse(wx.getStorageSync("groups") || "[]");
+			groups.push(group);
+			wx.setStorageSync("groups", JSON.stringify(groups));
 			wx.showToast({
 				title: '成功',
 				icon: 'success'

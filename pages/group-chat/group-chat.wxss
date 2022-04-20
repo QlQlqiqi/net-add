@@ -1,32 +1,8 @@
 .community-wrap {
   position: relative;
 }
-.community-wrap .rotation-chart {
-  height: 330rpx;
-  width: 100%;
-}
-.community-wrap .rotation-chart image {
-  height: 100%;
-  width: 100%;
-}
 .community-wrap .chats-wrap {
-  padding-top: 60rpx;
   margin-bottom: 300rpx;
-}
-.community-wrap .chats-wrap .chat-wrap {
-  position: relative;
-}
-.community-wrap .chats-wrap .chat-wrap .chat {
-  margin-left: 24rpx;
-  padding: 15rpx 0 15rpx 24rpx;
-  border-left: 4rpx solid rgba(103, 167, 143, 0.7);
-}
-.community-wrap .chats-wrap .chat-wrap .left-circle-icon {
-  position: absolute;
-  height: 24rpx;
-  top: 20rpx;
-  left: 15rpx;
-  width: 24rpx;
 }
 .community-return-top-wrap {
   position: fixed;

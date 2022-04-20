@@ -11,7 +11,7 @@ Component({
 			"text": "社区"
 		},
 		{
-			"pagePath": "/pages/groupChat/groupChat",
+			"pagePath": "/pages/group-chat/group-chat",
 			"iconPath": "/public/image/tabbar-group-chat-unselected.png",
 			"selectedIconPath": "/public/image/tabbar-group-chat.png",
 			"text": "群聊"

@@ -1,0 +1,34 @@
+<view style="position: relative; height: {{ navHeight }}px;"></view>
+<!-- 导航栏 -->
+<navbar page-name="{{ pageName }}"></navbar>
+
+<!-- 主要内容 -->
+<scroll-view class="community-wrap" refresher-enabled="{{ true }}" refresher-triggered="{{ pullDownRefresh }}" 
+  style="height: {{ (windowHeight - navHeight - 58 - bottomLineHeight) * ratio }}rpx;" scroll-y="{{ true }}" 
+  bindrefresherrefresh="pullDownLoad" scroll-top="{{ scrollTop }}px;"
+	bindscrolltolower="handleLowerRefresh"
+>
+  <!-- 说说 -->
+  <view class="chats-wrap">
+    <view class="chat-wrap" wx:for="{{ groupsShow }}" wx:key="index">
+      <view class="chat" style="padding-bottom: {{ index + 1 == groupsShow.length? 200: 0 }}rpx;">
+        <group-chat bindtap="handleNavigateChatRoom" group="{{ item }}" data-index="{{index}}"
+					componentWidthMax="{{ 616 / ratio }}" div-line="{{ index + 1 < groupsShow.length }}"
+				/>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 返回顶部 -->
+<view class="community-return-top-wrap" bindtap="handleReturnTop">
+	<image src="/public/image/return-top.svg" mode="aspectFit" class="image"></image>
+</view>
+
+<!-- 新增分享 -->
+<wxs module="touchmove" src="/wxs/touchmove.wxs"></wxs>
+<image id="some" data-window-width="{{ windowWidth }}" data-window-height="{{ windowHeight }}" 
+  src="/public/image/add-task.png" style="right: 50px; bottom: 170px;" catchtap="handleAddGroup" 
+  catch:touchmove="{{ touchmove.handleTouchMove }}" mode="aspectFit" class="community-add-icon" 
+  catch:touchend="{{ touchmove.handleTouchEnd }}" bindtouchstart="{{ touchmove.handleTouchStart }}"
+></image>

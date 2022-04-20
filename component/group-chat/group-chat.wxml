@@ -1,0 +1,20 @@
+<view class="share-message-wrap">
+	<view class="content-wrap">
+		<!-- 头像 -->
+		<view class="head-icon-wrap">
+			<image src="{{ group.headIcon }}" mode="aspectFit" class="head-icon"></image>
+		</view>
+		<view class="title-content">
+			<view class="title">{{ group.title }}</view>
+			<view class="content">{{ last.nickname + "：" + last.content }}</view>
+		</view>
+		<view class="content-date">{{ last.date }}</view>
+	</view>
+	<!-- 说说相关信息 -->
+	<view class="share-message-info">
+		<!-- 左下角的时间 -->
+		<view class="share-message-time">{{ date }}</view>
+		<!-- 地理位置 -->
+		<view class="share-message-add">{{ group.address }}</view>
+	</view>
+</view>

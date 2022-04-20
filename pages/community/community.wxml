@@ -8,8 +8,14 @@
   bindrefresherrefresh="pullDownLoad" scroll-top="{{ scrollTop }}px;"
 	bindscrolltolower="handleLowerRefresh"
 >
-	<!-- 舆情播报 -->
-	<view class="situation-report"></view>
+	<!-- 轮播图 -->
+  <swiper class="rotation-chart" indicator-dots="{{ true }}" autoplay="{{ true }}" 
+		interval="{{ 3000 }}" bindchange="handleChangeCurrentGallery"
+	>
+    <swiper-item wx:for="{{ gallerys }}" wx:key="index" bindtap="handleOpenOfficialAccount">
+      <image src="{{ item.icon }}" mode="aspectFit"></image>
+    </swiper-item>
+  </swiper>
   <!-- 说说 -->
   <view class="chats-wrap">
     <view class="chat-wrap" wx:for="{{ chatsShow }}" wx:key="index">

@@ -1,0 +1,51 @@
+.share-message-wrap {
+  border-bottom: 2rpx solid #ccc;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: white;
+  padding: 30rpx;
+}
+.share-message-wrap .content-wrap {
+  display: flex;
+  height: 140rpx;
+}
+.share-message-wrap .content-wrap .head-icon-wrap {
+  flex: 2;
+  text-align: center;
+}
+.share-message-wrap .content-wrap .head-icon-wrap .head-icon {
+  padding-top: 20rpx;
+  height: 100rpx;
+  width: 100rpx;
+}
+.share-message-wrap .content-wrap .title-content {
+  flex: 3;
+  padding-top: 20rpx;
+  height: 100rpx;
+  line-height: 50rpx;
+}
+.share-message-wrap .content-wrap .title-content .content {
+  font-size: 24rpx;
+  color: #888;
+}
+.share-message-wrap .content-wrap .content-date {
+  text-align: right;
+  flex: 3;
+  line-height: 70px;
+  height: 140rpx;
+  font-size: 24rpx;
+  color: #888;
+}
+.share-message-wrap .share-message-info {
+  color: #B9B8B8;
+  font-size: 24rpx;
+  display: flex;
+}
+.share-message-wrap .share-message-info .share-message-time {
+  flex: 5;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.share-message-wrap .share-message-info .share-message-add {
+  text-align: right;
+}

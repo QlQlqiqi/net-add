@@ -1,0 +1,7 @@
+<view style="position: relative; height: {{ navHeight }}px;"></view>
+<!-- 导航栏 -->
+<navbar page-name="{{ pageName }}">
+	<image slot="backIcon" src="/public/image/back.png" mode="aspectFit" 
+		bind:tap="handleBack" style="width: 24px; height: 24px;"
+	></image>
+</navbar>

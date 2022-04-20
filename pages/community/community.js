@@ -11,6 +11,15 @@ Component({
 		pullDownRefresh: false,
 		chatsShow: [],
 		chats: [],
+		// 轮播图
+		gallerys: [
+			{
+				icon: "https://witime.wizzstudio.com/images/op/cover.png",
+				title: "拒绝焦虑，良性竞争， “卷王”竟是我自己！？",
+				url: "https://mp.weixin.qq.com/s/reKAhE4Fw0x7BhPTYjDHYg",
+			},
+		],
+		currentGallery: 0
 	},
 
 	computed: {
@@ -53,6 +62,23 @@ Component({
 			this.setData({
 				chats,
 				pullDownRefresh: false,
+			});
+		},
+		// 当前轮播图 index 改变
+		handleChangeCurrentGallery(e) {
+			this.setData({
+				currentGallery: e.detail.current,
+			});
+		},
+		// 跳转 web-view
+		handleOpenOfficialAccount(e) {
+			let gallery = this.data.gallerys[this.data.currentGallery];
+			wx.navigateTo({
+				url:
+					"/pages/web-view/web-view?src=" +
+					JSON.stringify(gallery.url) +
+					"&title=" +
+					JSON.stringify(gallery.title),
 			});
 		},
 		// 举报分享

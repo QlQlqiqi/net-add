@@ -1,3 +1,0 @@
-<view style="position: relative; height: {{ navHeight }}px;"></view>
-<!-- 导航栏 -->
-<navbar page-name="{{ pageName }}"></navbar>

@@ -1,0 +1,8 @@
+{
+	"component": true,
+	"usingComponents": {
+		"navbar": "/component/navbar/navbar",
+		"group-chat": "/component/group-chat/group-chat",
+		"mp-dialog": "weui-miniprogram/dialog/dialog"
+	}
+}

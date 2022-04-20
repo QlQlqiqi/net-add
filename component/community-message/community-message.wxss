@@ -29,18 +29,16 @@
   font-family: cursive;
   word-break: break-all;
 }
-.share-message-wrap .share-message-content-wrap .share-message-content .reivew-abridge {
-  position: relative;
+.share-message-wrap .share-message-content-wrap .share-message-info {
+  color: #B9B8B8;
+  font-size: 28rpx;
 }
 .share-message-wrap .share-message-content-wrap .share-message-info .share-message-time {
   flex: 5;
-  color: #B9B8B8;
-  font-size: 28rpx;
   height: 88rpx;
   line-height: 88rpx;
 }
 .share-message-wrap .share-message-content-wrap .share-message-info .likes-num {
-  font-size: 28rpx;
   flex: 5;
   height: 88rpx;
   line-height: 88rpx;
@@ -89,21 +87,4 @@
 }
 .share-message-wrap .share-message-option-select .share-message-option .option-divide {
   border-top: 2rpx solid #bbbbbb;
-}
-.share-message-wrap .share-message-chats-wrap {
-  position: relative;
-}
-.share-message-wrap .share-message-chats-wrap .chats-content-wrap {
-  padding: 26rpx 46rpx 26rpx 26rpx;
-  max-height: 600rpx;
-  overflow-y: scroll;
-}
-.share-message-wrap .share-message-chats-wrap .chats-content-wrap .share-message-chat .chat-title,
-.share-message-wrap .share-message-chats-wrap .chats-content-wrap .share-message-chat .chat-content {
-  height: 54rpx;
-  line-height: 54rpx;
-  color: #576B95;
-}
-.share-message-wrap .share-message-chats-wrap .chats-content-wrap .share-message-chat .chat-content {
-  color: black;
 }

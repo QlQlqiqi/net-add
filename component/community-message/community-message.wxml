@@ -26,7 +26,7 @@
 				></image>
 			</view>
 			<!-- 地理位置 -->
-			<view class="share-message-time">{{ chat.address }}</view>
+			<view class="share-message-add">{{ chat.address }}</view>
 		</view>
 	</view>
 	<!-- 功能面板 -->

@@ -6,7 +6,7 @@
 <scroll-view class="cu-chat" style="height: {{ windowHeight - navHeight - InputBottom - 50 }}px;"
 	scroll-y="{{ true }}"
 >
-	<view wx:for="{{ group.content }}" wx:key="index" 
+	<view wx:for="{{ contentShow }}" wx:key="index" 
 		class="{{ item.owner == owner? 'cu-item self': 'cu-item' }}"
 	>
 		<view wx:if="{{ item.owner != owner }}" class="cu-avatar radius" style="background-image:url({{item.avatarUrl}});"></view>

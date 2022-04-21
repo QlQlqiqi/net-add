@@ -31,14 +31,14 @@ function formatDate(date) {
 	let time = date.substr(11, 5),
 		showDate;
 	// 如果是今天，不显示年月日份
-	if (date.substr(0, 10) === todayYMD) {
+	if (date.substr(0, 10) == todayYMD) {
 		showDate = time;
 	}
 	// 如果是今年的，显示月日
-	else if (year === todayYMD.substr(0, 4)) {
-		showDate = `${month}月${day}日${time}`;
+	else if (year == todayYMD.substr(0, 4)) {
+		showDate = `${+month}月${+day}日${time}`;
 	} else {
-		showDate = `${year}年${month}月${day}日${time}`;
+		showDate = `${+year}年${+month}月${+day}日${time}`;
 	}
 	return showDate;
 }

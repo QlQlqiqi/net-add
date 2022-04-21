@@ -12,6 +12,7 @@
   position: relative;
 }
 .share-message-wrap .share-message-content-wrap .share-message-head-icon {
+  border-radius: 50%;
   position: absolute;
   width: 48rpx;
   height: 48rpx;
@@ -57,6 +58,10 @@
   height: 88rpx;
   flex: 1;
   box-sizing: border-box;
+}
+.share-message-wrap .share-message-content-wrap .share-message-info .share-message-add {
+  height: 40rpx;
+  line-height: 40rpx;
 }
 .share-message-wrap .share-message-option-select {
   position: absolute;

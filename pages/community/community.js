@@ -26,10 +26,12 @@ Component({
 	computed: {
 		// 当前页面展示的 chats
 		chatsShow(data) {
-			// 目前展示所有的 chats
-			return data.chats.filter(item => {
+			// 按照时间排序
+			let chatsShow = data.chats.filter(item => {
 				return true;
 			});
+			chatsShow.sort((a, b) => a.date - b.date);
+			return chatsShow;
 		},
 	},
 
@@ -46,15 +48,34 @@ Component({
 			if (!chats.length) {
 				chats = [
 					{
-						id: 1,
-						owner: 1,
-						headIcon: app.globalData.avatarUrl,
-						name: app.globalData.nickname,
-						content:
-							"啊实打实大苏打实打实打算啊实打实大苏打实打实打算啊实打实大苏打实打实打算啊实打实大苏打实打实打算啊实打实大苏打实打实打算",
-						likes: [1, 2, 3],
-						date: "2022-04-20T12:00:00Z",
+						id: 2,
+						owner: 2,
+						headIcon: app.globalData.default[0].avatarUrl,
+						name: app.globalData.default[0].nickname,
+						content: "凤城八路又堵了...",
+						likes: [2, 3, 4],
+						date: "2022-04-20T12:00:01Z",
 						address: "陕西省西安市未央区凤城八路109号",
+					},
+					{
+						id: 3,
+						owner: 3,
+						headIcon: app.globalData.default[1].avatarUrl,
+						name: app.globalData.default[1].nickname,
+						content: "西沣路出车祸了，友友们绕路吧",
+						likes: [2],
+						date: "2022-04-21T10:00:02Z",
+						address: "陕西省西安市长安区西沣路",
+					},
+					{
+						id: 4,
+						owner: 4,
+						headIcon: app.globalData.default[2].avatarUrl,
+						name: app.globalData.default[2].nickname,
+						content: "西沣路半小时没动了，救命...",
+						likes: [],
+						date: "2022-04-21T10:40:03Z",
+						address: "陕西省西安市长安区西沣路",
 					},
 				];
 			}

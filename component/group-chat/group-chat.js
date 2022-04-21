@@ -18,10 +18,19 @@ Component({
 			return util.formatDate(data.group.date);
 		},
 		last(data) {
-			if (!data.group.content.length) {
-				return { nickname: "", content: "", date: data.date };
-			}
-			return data.group.content[data.group.content.length - 1];
+			let last = {
+				nickname: "",
+				content: "",
+				date: data.date,
+			};
+			if (!data.group.content.length) return last;
+			let lastContent = data.group.content[data.group.content.length - 1];
+			last.nickname = lastContent.nickname;
+			last.content = lastContent.content;
+			if (last.content.length > 5)
+				last.content = last.content.slice(0, 5) + "...";
+			last.date = util.formatDate(lastContent.date);
+			return last;
 		},
 	},
 

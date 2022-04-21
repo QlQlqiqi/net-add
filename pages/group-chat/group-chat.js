@@ -17,10 +17,12 @@ Component({
 	computed: {
 		// 当前页面展示的 groups
 		groupsShow(data) {
-			// 目前展示所有的 groups
-			return data.groups.filter(item => {
+			// 按时间排序
+			let groupsShow = data.groups.filter(item => {
 				return true;
 			});
+			groupsShow.sort((a, b) => a.date - b.date);
+			return groupsShow;
 		},
 	},
 
@@ -37,29 +39,68 @@ Component({
 			if (!groups.length) {
 				groups = [
 					{
-						id: 1,
-						owner: 1,
-						headIcon: app.globalData.avatarUrl,
-						name: app.globalData.nickname,
+						id: 2,
+						owner: 2,
+						nickname: app.globalData.default[0].nickname,
+						headIcon: app.globalData.default[0].avatarUrl,
 						title: "凤城八路聚集地",
 						content: [
 							{
-								owner: 1,
-								nickname: "QlQl",
-								avatarUrl: app.globalData.avatarUrl,
-								content: "好好",
-								date: util.formatDate(util.convertDateToString(new Date())),
+								owner: 2,
+								nickname: app.globalData.default[0].nickname,
+								avatarUrl: app.globalData.default[0].avatarUrl,
+								content: "友友们别来了，又堵车了",
+								date: "2022-04-20T12:01:00Z",
 							},
 							{
-								owner: 0,
-								nickname: "QlQl",
-								avatarUrl: app.globalData.avatarUrl,
-								content: "好好",
-								date: util.formatDate(util.convertDateToString(new Date())),
+								owner: 2,
+								nickname: app.globalData.default[0].nickname,
+								avatarUrl: app.globalData.default[0].avatarUrl,
+								content: "每次来都堵车",
+								date: "2022-04-20T12:01:05Z",
+							},
+							{
+								owner: 2,
+								nickname: app.globalData.default[0].nickname,
+								avatarUrl: app.globalData.default[0].avatarUrl,
+								content: "我震惊了",
+								date: "2022-04-20T12:01:11Z",
+							},
+							{
+								owner: 3,
+								nickname: app.globalData.default[1].nickname,
+								avatarUrl: app.globalData.default[1].avatarUrl,
+								content: "确实，我也堵住了，不知道啥时候才能出去啊",
+								date: "2022-04-20T12:01:21Z",
+							},
+							{
+								owner: 4,
+								nickname: app.globalData.default[2].nickname,
+								avatarUrl: app.globalData.default[2].avatarUrl,
+								content: "谢谢友友们，我绕路走了",
+								date: "2022-04-20T12:02:21Z",
 							},
 						],
 						date: "2022-04-20T12:00:00Z",
 						address: "陕西省西安市未央区凤城八路109号",
+					},
+					{
+						id: 3,
+						owner: 3,
+						nickname: app.globalData.default[1].nickname,
+						headIcon: app.globalData.default[1].avatarUrl,
+						title: "西沣路",
+						content: [
+							{
+								owner: 3,
+								nickname: app.globalData.default[1].nickname,
+								avatarUrl: app.globalData.default[1].avatarUrl,
+								content: "西沣路好像出车祸了，大家绕路走吧",
+								date: "2022-04-21T10:11:12Z",
+							},
+						],
+						date: "2022-04-21T10:10:00Z",
+						address: "陕西省显示长安区西沣路",
 					},
 				];
 			}

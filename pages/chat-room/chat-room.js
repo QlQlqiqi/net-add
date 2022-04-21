@@ -1,6 +1,6 @@
 const app = getApp();
 const computedBehavior = require("miniprogram-computed").behavior;
-const util = require('../../utils/util')
+const util = require("../../utils/util");
 Component({
 	behaviors: [computedBehavior],
 	properties: {},
@@ -19,6 +19,16 @@ Component({
 		},
 		InputBottom(data) {
 			return data.bottomLineHeight;
+		},
+		contentShow(data) {
+			let contentShow = [], {content} = data.group;
+			if(!content)
+				return [];
+			for (let i = 0; i < content.length; i++) {
+				contentShow.push({ ...content[i] });
+				contentShow[i].date = util.formatDate(content[i].date);
+			}
+			return contentShow;
 		},
 	},
 
@@ -49,26 +59,27 @@ Component({
 		// 发送
 		handleSend(e) {
 			const { group, owner, inputContent } = this.data;
+			if (!inputContent) return;
 			const { nickname, avatarUrl } = app.globalData;
 			const newContent = {
 				owner,
 				nickname,
 				avatarUrl,
 				content: inputContent,
-				date: util.formatDate(util.convertDateToString(new Date())),
-			}
+				date: util.convertDateToString(new Date()),
+			};
 			group.content.push(newContent);
 			this.setData({
 				group,
-				inputContent: ''
-			})
-			const groups = JSON.parse(wx.getStorageSync('groups') || "[]");
-			for(const item of groups) {
-				if(item.id == group.id) {
-					item.content.push(newContent)
+				inputContent: "",
+			});
+			const groups = JSON.parse(wx.getStorageSync("groups") || "[]");
+			for (const item of groups) {
+				if (item.id == group.id) {
+					item.content.push(newContent);
 				}
 			}
-			wx.setStorageSync('groups', JSON.stringify(groups));
+			wx.setStorageSync("groups", JSON.stringify(groups));
 		},
 		onLoad(e) {
 			// 设置机型相关信息
@@ -87,7 +98,6 @@ Component({
 			this.setData({
 				group,
 			});
-			
 		},
 	},
 });

@@ -1,0 +1,15 @@
+page {
+  background-color: white;
+}
+.more-info {
+  text-align: center;
+  height: 50rpx;
+  line-height: 50rpx;
+  width: 200rpx;
+  margin: 40rpx auto;
+  border-radius: 30rpx;
+  background-color: #eee;
+}
+.bottom-occupation {
+  height: 200rpx;
+}

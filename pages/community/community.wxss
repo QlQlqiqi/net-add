@@ -9,6 +9,52 @@
   height: 100%;
   width: 100%;
 }
+.community-wrap .notice-auto {
+  display: flex;
+  height: 150rpx;
+  width: 668rpx;
+  margin: 75rpx 41rpx 0 41rpx;
+  box-sizing: content-box;
+  /* border: 1px solid; */
+  background-color: white;
+  padding: 0 34rpx 0 34rpx;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 26rpx 0px rgba(132, 132, 132, 0.18);
+  border-radius: 24rpx;
+}
+.community-wrap .notice-auto .logo {
+  height: 150rpx;
+  width: 100rpx;
+}
+.community-wrap .notice-auto .content-wrap {
+  height: 50rpx;
+  flex: 5;
+  margin-top: 50rpx;
+  margin: 50rpx 50rpx 0 50rpx;
+  width: 300rpx;
+  overflow: hidden;
+  box-sizing: content-box;
+  font-size: 30rpx;
+}
+.community-wrap .notice-auto .content-wrap .content {
+  line-height: 25px;
+  height: 50rpx;
+  animation: mymove 3s infinite;
+}
+@keyframes mymove {
+  0% {
+    transform: translateY(-40rpx);
+  }
+  10% {
+    transform: translateY(0rpx);
+  }
+  90% {
+    transform: translateY(0rpx);
+  }
+  100% {
+    transform: translateY(40rpx);
+  }
+}
 .community-wrap .chats-wrap {
   padding-top: 60rpx;
   margin-bottom: 300rpx;

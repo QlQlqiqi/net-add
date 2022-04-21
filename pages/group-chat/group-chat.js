@@ -1,6 +1,7 @@
 const app = getApp();
 const computedBehavior = require("miniprogram-computed").behavior;
 const util = require("../../utils/util");
+const login = require('../../utils/login')
 Component({
 	behaviors: [computedBehavior],
 	properties: {},
@@ -21,7 +22,7 @@ Component({
 			let groupsShow = data.groups.filter(item => {
 				return true;
 			});
-			groupsShow.sort((a, b) => a.date - b.date);
+			groupsShow.sort((a, b) => b.date.localeCompare(a.date));
 			return groupsShow;
 		},
 	},
@@ -113,7 +114,7 @@ Component({
 		},
 		// 群聊页面
 		handleNavigateChatRoom(e) {
-			if (!this._checkLogin()) return;
+			if (!login.checkLogin()) return;
 			const {
 				currentTarget: {
 					dataset: { index },
@@ -127,36 +128,10 @@ Component({
 		},
 		// 前往增加群聊页面
 		handleAddGroup(e) {
-			if (!this._checkLogin()) return;
+			if (!login.checkLogin()) return;
 			wx.navigateTo({
 				url: "/pages/add-group/add-group",
 			});
-		},
-		// 监测是否“登录”
-		_checkLogin() {
-			if (!app.globalData.login) {
-				util
-					.getUserProfile("获取头像和昵称用于身份识别")
-					.then(res => {
-						app.globalData.avatarUrl = res.userInfo.avatarUrl;
-						app.globalData.nickname = res.userInfo.nickName;
-						app.globalData.login = true;
-						wx.setStorageSync("login", JSON.stringify(true));
-						wx.setStorageSync(
-							"nickname",
-							JSON.stringify(app.globalData.nickname)
-						);
-						wx.setStorageSync(
-							"avatarUrl",
-							JSON.stringify(app.globalData.avatarUrl)
-						);
-					})
-					.catch(err => {
-						console.log(err);
-					});
-				return false;
-			}
-			return true;
 		},
 		// 返回顶部
 		handleReturnTop(e) {

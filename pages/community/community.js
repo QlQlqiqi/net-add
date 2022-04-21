@@ -1,6 +1,7 @@
 const app = getApp();
 const computedBehavior = require("miniprogram-computed").behavior;
 const util = require("../../utils/util");
+const login = require('../../utils/login')
 Component({
 	behaviors: [computedBehavior],
 	properties: {},
@@ -21,6 +22,12 @@ Component({
 			},
 		],
 		currentGallery: 0,
+		notice: [
+			"西沣路前方疑似车祸，建议绕道而行",
+			"凤城八路堵车长达 1km，请规划行车路线",
+			"太白南路高峰期，请择路而行",
+		],
+		currentNoticeIndex: 0,
 	},
 
 	computed: {
@@ -30,8 +37,13 @@ Component({
 			let chatsShow = data.chats.filter(item => {
 				return true;
 			});
-			chatsShow.sort((a, b) => a.date - b.date);
+			chatsShow.sort((a, b) => b.date.localeCompare(a.date));
 			return chatsShow;
+		},
+		noticeShow(data) {
+			let noticeShow = data.notice[data.currentNoticeIndex];
+			if (noticeShow.length > 12) noticeShow = noticeShow.slice(0, 12) + "...";
+			return noticeShow;
 		},
 	},
 
@@ -86,6 +98,12 @@ Component({
 				pullDownRefresh: false,
 			});
 		},
+		// 前往消息页面
+		handleNavigateNotice(e) {
+			wx.navigateTo({
+				url: '/pages/notice/notice',
+			})
+		},
 		// 当前轮播图 index 改变
 		handleChangeCurrentGallery(e) {
 			this.setData({
@@ -103,35 +121,9 @@ Component({
 					JSON.stringify(gallery.title),
 			});
 		},
-		// 监测是否“登录”
-		_checkLogin() {
-			if (!app.globalData.login) {
-				util
-					.getUserProfile("获取头像和昵称用于身份识别")
-					.then(res => {
-						app.globalData.avatarUrl = res.userInfo.avatarUrl;
-						app.globalData.nickname = res.userInfo.nickName;
-						app.globalData.login = true;
-						wx.setStorageSync("login", JSON.stringify(true));
-						wx.setStorageSync(
-							"nickname",
-							JSON.stringify(app.globalData.nickname)
-						);
-						wx.setStorageSync(
-							"avatarUrl",
-							JSON.stringify(app.globalData.avatarUrl)
-						);
-					})
-					.catch(err => {
-						console.log(err);
-					});
-				return false;
-			}
-			return true;
-		},
 		// 举报分享
 		handleReport(e) {
-			if (!this._checkLogin()) return;
+			if (!login.checkLogin()) return;
 			const {
 				detail: { id },
 			} = e;
@@ -160,7 +152,7 @@ Component({
 		},
 		// 删除分享
 		handleDelete(e) {
-			if (!this._checkLogin()) return;
+			if (!login.checkLogin()) return;
 			const {
 				detail: { id },
 			} = e;
@@ -206,7 +198,7 @@ Component({
 		},
 		// 点赞
 		handleAddLike(e) {
-			if (!this._checkLogin()) return;
+			if (!login.checkLogin()) return;
 			const {
 				detail: { id },
 			} = e;
@@ -225,7 +217,7 @@ Component({
 		},
 		// 前往增加分享页面
 		handleAddShare(e) {
-			if (!this._checkLogin()) return;
+			if (!login.checkLogin()) return;
 			wx.navigateTo({
 				url: "/pages/add-share/add-share",
 			});
@@ -249,6 +241,14 @@ Component({
 				noticeUpdateContent: app.globalData.noticeUpdateContent || false,
 				pullDownRefresh: true,
 			});
+			// 通告
+			let { currentNoticeIndex, notice } = this.data;
+			setInterval(() => {
+				currentNoticeIndex = (currentNoticeIndex + 1) % notice.length;
+				this.setData({
+					currentNoticeIndex,
+				});
+			}, 3000);
 		},
 	},
 

@@ -9,13 +9,20 @@
 	bindscrolltolower="handleLowerRefresh"
 >
 	<!-- 轮播图 -->
-  <swiper class="rotation-chart" indicator-dots="{{ true }}" autoplay="{{ true }}" 
+  <!-- <swiper class="rotation-chart" indicator-dots="{{ true }}" autoplay="{{ true }}" 
 		interval="{{ 3000 }}" bindchange="handleChangeCurrentGallery"
 	>
     <swiper-item wx:for="{{ gallerys }}" wx:key="index" bindtap="handleOpenOfficialAccount">
       <image src="{{ item.icon }}" mode="aspectFit"></image>
     </swiper-item>
-  </swiper>
+  </swiper> -->
+	<!-- 交通信息 -->
+	<view class="notice-auto" bindtap="handleNavigateNotice">
+		<image class="logo" src="/public/image/public-relation.png" mode="aspectFit"></image>
+		<view class="content-wrap">
+			<view class="content">{{ noticeShow }}</view>
+		</view>
+	</view>
   <!-- 说说 -->
   <view class="chats-wrap">
     <view class="chat-wrap" wx:for="{{ chatsShow }}" wx:key="index">

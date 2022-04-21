@@ -1,6 +1,7 @@
 {
 	"pages": [
 		"pages/community/community",
+		"pages/notice/notice",
 		"pages/group-chat/group-chat",
 		"pages/add-share/add-share",
 		"pages/add-group/add-group",

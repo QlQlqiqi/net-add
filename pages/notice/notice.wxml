@@ -1,0 +1,68 @@
+<view style="position: relative; height: {{ navHeight }}px;"></view>
+<!-- 导航栏 -->
+<navbar page-name="{{ pageName }}">
+	<image slot="backIcon" src="/public/image/back.png" mode="aspectFit" 
+		bind:tap="handleBack" style="width: 24px; height: 24px;"
+	></image>
+</navbar>
+
+<scroll-view style="height: {{ windowHeight - navHeight - bottomLineHeight}}px;" 
+	scroll-y="{{ true }}"
+>
+	<view class="cu-timeline">
+		<view class="cu-time">今天</view>
+		<view class="cu-item cur text-green">
+			<view class="content bg-green shadow-blur">
+				<text>08:31</text>【西安市长安区西沣路】前方疑似车祸，建议绕道而行
+			</view>
+			<view class="bg-cyan content bg-green">
+				<text>08:58</text> 【西安市长安区西沣路】车祸结束，道路通行
+			</view>
+		</view>
+		<view class="cu-item text-red">
+			<view class="content bg-red shadow-blur">
+				10:20【西安市未央区凤城八路】堵车长达 1km，请规划行车路线
+			</view>
+		</view>
+		<view class="cu-item text-grey">
+			<view class="content bg-grey shadow-blur">
+				11:44【西安市雁塔区太白南路】高峰期，请择路而行
+			</view>
+		</view>
+		<view class="cu-item text-blue">
+			<view class="bg-blue content">
+				<text>20:01</text> 【西安市长安区兴隆街道 255 号】堵车长达 1km
+			</view>
+			<view class="bg-cyan content">
+				<text>20:25</text> 【西安市长安区兴隆街道 255 号】依旧堵车
+			</view>
+		</view>
+	</view>
+
+	<!-- 更多信息 -->
+	<view wx:if="{{ !moreInfoShow }}" class="more-info" bindtap="handleShowMoreInfo">显示更多</view>
+	<view wx:else class="cu-timeline">
+		<view class="cu-time">昨天</view>
+		<view class="cu-item">
+			<view class="content">
+				<text>11:30</text>【西安市长安区西沣路】高峰期，预计堵车 30mins
+			</view>
+		</view>
+	</view>
+
+	<!-- 实名献策 -->
+	<view class="padding flex flex-direction">
+		<button class="cu-btn bg-blue margin-tb-sm lg" bindtap="handleAddInfo">我有情报</button>
+	</view>
+
+	<view class="bottom-occupation"></view>
+</scroll-view>
+
+<!-- 弹窗 -->
+<mp-dialog show="{{ tipShow }}" title="提示" mask="{{ true }}" mask-closable="{{ false }}" 
+	buttons="{{ [{text:'取消'},{text:'确定'}] }}" bindbuttontap="handleDialogButtons"
+>
+	<input value="{{ tipContent }}" placeholder="请描述清楚时间、地点、车况等信息"
+		placeholder-style="font-size: 24rpx; color: #888; line-height: 60rpx; height: 60rpx;" 
+	/>
+</mp-dialog>
